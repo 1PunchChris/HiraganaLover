@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Display Japanese Text File</title>
+   <style>
+       /* CSS to control text wrapping */
+       body {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 100vh;
+           margin: 0;
+       }
+
+       pre {
+           max-width: calc(100% - 17px); /* Subtract the scrollbar width */
+           white-space: pre-wrap;
+           word-wrap: break-word; /* Allow words to break and wrap */
+       }
+
+       /* Enable horizontal scrollbar */
+       html, body {
+           overflow-x: auto;
+       }
+   </style>
+</head>
+<body>
+   <pre id="file-content"></pre>
+
+   <script>
+       // Fetch the Japanese text file content using JavaScript
+       fetch('shinto.txt')
+           .then(response => response.text())
+           .then(data => {
+               document.getElementById('file-content').textContent = data;
+           })
+           .catch(error => {
+               console.error('Error loading Japanese text file:', error);
+           });
+   </script>
+</body>
+</html>
